@@ -1,0 +1,24 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Download the pinned ETH files (checksums verified)
+        run: python scripts/download_data.py
+      - name: Tests (includes the full reproduction of the preprint's Table 1)
+        run: pytest -q
+      - name: Reproduction check
+        run: python scripts/reproduce.py --figures /tmp/figures --out /tmp/reproduction

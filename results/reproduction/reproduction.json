@@ -1,0 +1,196 @@
+{
+  "opentraj_commit": "97ec1d5e1b579f26febeaa9083705952deac338a",
+  "dataset_sha256": {
+    "ETH": "d452ae2185ecb1164c2fdf31e75f6236f4c2ffc02c751a6b2ae921740cbc60d1",
+    "Hotel": "2b8577595204a6b780b80258fd50da35adb7293e3e06ad6f8e1b60965e7dde6e"
+  },
+  "config": {
+    "min_track_len": 4,
+    "obs_fraction": 0.5,
+    "max_pred_steps": 8,
+    "min_gt_steps": 2,
+    "dt": 0.4,
+    "damping": 0.98,
+    "min_speed": 0.01,
+    "speed_substitute": 0.5,
+    "failure_percentile": 75.0,
+    "features": [
+      "init_speed",
+      "init_orientation",
+      "init_x",
+      "init_y"
+    ],
+    "max_depth": 4,
+    "min_samples_leaf": 10,
+    "random_state": 42
+  },
+  "all_values_match_preprint": true,
+  "checks": [
+    {
+      "scene": "ETH",
+      "metric": "trajectories",
+      "preprint": 353,
+      "reproduced": 353,
+      "reproduced_rounded": 353,
+      "match": true
+    },
+    {
+      "scene": "ETH",
+      "metric": "mean_ade",
+      "preprint": 0.326,
+      "reproduced": 0.32616174510527135,
+      "reproduced_rounded": 0.326,
+      "match": true
+    },
+    {
+      "scene": "ETH",
+      "metric": "mean_fde",
+      "preprint": 0.653,
+      "reproduced": 0.6532154209745195,
+      "reproduced_rounded": 0.653,
+      "match": true
+    },
+    {
+      "scene": "ETH",
+      "metric": "threshold",
+      "preprint": 0.41,
+      "reproduced": 0.4086752689354286,
+      "reproduced_rounded": 0.41,
+      "match": true
+    },
+    {
+      "scene": "ETH",
+      "metric": "failure_rate",
+      "preprint": 0.249,
+      "reproduced": 0.24929178470254956,
+      "reproduced_rounded": 0.249,
+      "match": true
+    },
+    {
+      "scene": "ETH",
+      "metric": "tree_accuracy",
+      "preprint": 0.793,
+      "reproduced": 0.7932011331444759,
+      "reproduced_rounded": 0.793,
+      "match": true
+    },
+    {
+      "scene": "ETH",
+      "metric": "importance_init_orientation",
+      "preprint": 0.4,
+      "reproduced": 0.39970165927952567,
+      "reproduced_rounded": 0.4,
+      "match": true
+    },
+    {
+      "scene": "ETH",
+      "metric": "importance_init_y",
+      "preprint": 0.523,
+      "reproduced": 0.5233282535850394,
+      "reproduced_rounded": 0.523,
+      "match": true
+    },
+    {
+      "scene": "Hotel",
+      "metric": "trajectories",
+      "preprint": 366,
+      "reproduced": 366,
+      "reproduced_rounded": 366,
+      "match": true
+    },
+    {
+      "scene": "Hotel",
+      "metric": "mean_ade",
+      "preprint": 0.238,
+      "reproduced": 0.23823642355994581,
+      "reproduced_rounded": 0.238,
+      "match": true
+    },
+    {
+      "scene": "Hotel",
+      "metric": "mean_fde",
+      "preprint": 0.48,
+      "reproduced": 0.48022775997775236,
+      "reproduced_rounded": 0.48,
+      "match": true
+    },
+    {
+      "scene": "Hotel",
+      "metric": "threshold",
+      "preprint": 0.33,
+      "reproduced": 0.33314799291948005,
+      "reproduced_rounded": 0.33,
+      "match": true
+    },
+    {
+      "scene": "Hotel",
+      "metric": "failure_rate",
+      "preprint": 0.251,
+      "reproduced": 0.25136612021857924,
+      "reproduced_rounded": 0.251,
+      "match": true
+    },
+    {
+      "scene": "Hotel",
+      "metric": "tree_accuracy",
+      "preprint": 0.82,
+      "reproduced": 0.819672131147541,
+      "reproduced_rounded": 0.82,
+      "match": true
+    },
+    {
+      "scene": "Hotel",
+      "metric": "importance_init_orientation",
+      "preprint": 0.432,
+      "reproduced": 0.4319156868648412,
+      "reproduced_rounded": 0.432,
+      "match": true
+    },
+    {
+      "scene": "Hotel",
+      "metric": "importance_init_speed",
+      "preprint": 0.218,
+      "reproduced": 0.21775001157101007,
+      "reproduced_rounded": 0.218,
+      "match": true
+    }
+  ],
+  "importances": {
+    "ETH": {
+      "init_speed": 0.07697008713543495,
+      "init_orientation": 0.39970165927952567,
+      "init_x": 0.0,
+      "init_y": 0.5233282535850394
+    },
+    "Hotel": {
+      "init_speed": 0.21775001157101007,
+      "init_orientation": 0.4319156868648412,
+      "init_x": 0.1761151197149827,
+      "init_y": 0.17421918184916602
+    }
+  },
+  "majority_baseline": {
+    "ETH": 0.7507082152974505,
+    "Hotel": 0.7486338797814207
+  },
+  "extra": {
+    "ETH": {
+      "trajectories": 353,
+      "mean_ade": 0.32616174510527135,
+      "mean_fde": 0.6532154209745195,
+      "threshold": 0.4086752689354286,
+      "failure_rate": 0.24929178470254956,
+      "full_horizon_share": 0.8895184135977338,
+      "speed_substituted": 12
+    },
+    "Hotel": {
+      "trajectories": 366,
+      "mean_ade": 0.23823642355994581,
+      "mean_fde": 0.48022775997775236,
+      "threshold": 0.33314799291948005,
+      "failure_rate": 0.25136612021857924,
+      "full_horizon_share": 0.5519125683060109,
+      "speed_substituted": 43
+    }
+  }
+}
