@@ -1,6 +1,6 @@
 """
 Tests for the reusable analysis code. They use a small synthetic obsmat file
-(tests/fixtures/obsmat_small.txt); the reproduction test at the end runs only
+(tests/fixtures/obsmat_small.txt); the reproduction and notebook tests at the end run only
 when the real ETH files are present (python scripts/download_data.py).
 """
 
@@ -182,3 +182,17 @@ def test_reproduces_preprint_table1():
         assert round(tree["train_accuracy"], 3) == expected["tree_accuracy"]
         for feat, value in PAPER_IMPORTANCES[scene].items():
             assert round(tree["importances"][feat], 3) == value
+
+
+@pytest.mark.skipif(not all(verify(DATA).values()), reason="ETH data not downloaded (scripts/download_data.py)")
+def test_package_matches_original_notebook():
+    """The notebook's analysis cells, run unchanged except for the data path, give the same results as tfa."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("compare_notebook", ROOT / "scripts" / "compare_notebook.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    report = module.compare(ROOT / "SafeTraj_ETH.ipynb", DATA, ROOT / "results" / "reproduction")
+    for scene, r in report["scenes"].items():
+        assert r["same_trajectories"] and r["same_failure_labels"], scene
+        assert r["max_abs_diff_package"] <= 1e-9 and r["importance_max_diff"] <= 1e-9, scene
+    assert report["match"]
