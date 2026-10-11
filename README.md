@@ -45,7 +45,7 @@ The predictor is model-agnostic in the sense that only its outputs are used; any
 
 ## Results reported in the preprint — reproduced
 
-`python scripts/reproduce.py` recomputes everything from the raw files. All 16 checked values match the preprint at its reported precision, and the per-trajectory results are identical to the original notebook's (719 rows).
+`python scripts/reproduce.py` recomputes everything from the raw files. All 16 checked values match the preprint at its reported precision. `python scripts/compare_notebook.py` runs the original notebook's analysis cells unchanged (only the data path points to the pinned files) and finds the same 719 per-trajectory results, failure labels, thresholds and tree importances as the `tfa` package, with no difference at full precision; a test runs this comparison whenever the data are present.
 
 | Metric | ETH (preprint) | ETH (reproduced) | Hotel (preprint) | Hotel (reproduced) |
 |---|:---:|:---:|:---:|:---:|
@@ -102,7 +102,12 @@ These analyses use the same data, predictor and tree settings and change **one t
 
 ## Notes on the preprint text (checked against the code)
 
-These points concern the description, not the reported numbers, which the code reproduces exactly.
+The preprint on Zenodo is not modified. This section records where its text differs from the code that produced its numbers; the code is the reference for every reproduced value. These points concern the description, not the reported numbers, which the code reproduces exactly.
+
+- **Predictor.** Section 3.6 describes "a constant-velocity baseline (setting interaction forces to zero)". The notebook's predictor multiplies the velocity by 0.98 before every step (`vel = vel * 0.98`), so it is a damped constant-velocity model; its docstring says so, the preprint does not.
+- **Prediction horizon.** Section 4.1 says the second half of each trajectory is the prediction target, and Eq. 2 averages the error over all remaining steps (`T − T_obs`). The code predicts at most 8 steps: the horizon is min(8, second-half length), so long tracks are evaluated on their first 8 future steps only. A3 shows that the horizon affects the results.
+- **Role of speed.** The abstract says walking speed "plays a minor role". This holds for ETH (speed importance 0.077) but not for Hotel, where the preprint itself reports a speed importance of 0.218, more than either position coordinate.
+- **"Position (0.176)" in Hotel.** Section 4.5 lists Hotel's importances as orientation 0.432, speed 0.218 and position 0.176. The value 0.176 is the x coordinate only; y has a further 0.174 (visible in Figure 1, bottom right), so position as a whole has 0.350.
 
 - **Figure 2 colour key.** The caption (and a comment in the notebook) says blue nodes predict Success and orange nodes Failure. `sklearn.tree.plot_tree` colours class 0 (Success) orange and class 1 (Failure) blue, and the figure's own root node is orange with "class = Success". The colours are the reverse of the caption.
 - **Track filter.** Section 4.1 says sequences shorter than 5 observations were removed; the code removes those shorter than 4 (3 ETH and 15 Hotel tracks have exactly 4 points). The reported counts (353, 366) correspond to the code.
@@ -119,10 +124,11 @@ pip install -r requirements.txt                 # Python 3.10+
 python scripts/download_data.py                 # 2 files, pinned commit, SHA-256 verified -> data/eth/
 python scripts/reproduce.py                     # Table 1 check + figures; exit code 1 if any value differs
 python scripts/additional_analyses.py           # A1-A5 (about a minute)
-pytest                                          # 16 tests; the reproduction test runs when data/eth exists
+python scripts/compare_notebook.py              # original notebook cells vs. the tfa package
+pytest                                          # 17 tests; the reproduction and notebook tests run when data/eth exists
 ```
 
-The original notebook runs unchanged in Google Colab (badge above): it clones OpenTraj and writes the root-level figures. A GitHub Actions workflow (`.github/workflows/tests.yml`) is set up to download the data, run the tests and the reproduction check.
+The original notebook was written for Google Colab (badge above). It clones the current OpenTraj repository rather than the pinned commit, and its last cell uses `google.colab` to download the figures. Running it in Colab has not been re-checked for this repository; its analysis cells are checked locally against the pinned data by `scripts/compare_notebook.py`. A GitHub Actions workflow (`.github/workflows/tests.yml`) is set up to download the data, run the tests and the reproduction check.
 
 Use the functions directly:
 
@@ -196,4 +202,4 @@ trajectory-failure-analysis/
 }
 ```
 
-The preprint is distributed under CC BY 4.0 (Zenodo record). A license for the code in this repository has not been chosen yet.
+**Licensing status.** No license has been chosen yet for the code and the notebook in this repository, so default copyright applies; choosing one is left to the author. The preprint (`paper.pdf`) is distributed under CC BY 4.0 (Zenodo record). The ETH data are not redistributed here: `scripts/download_data.py` fetches them from OpenTraj, and they remain under the terms of the original dataset. The per-trajectory results in `results/` and the figures are derived from those data. The fixture in `tests/fixtures/` is synthetic.
