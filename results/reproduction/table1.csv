@@ -1,0 +1,17 @@
+scene,metric,preprint,reproduced,reproduced_rounded,match
+ETH,trajectories,353.0,353.0,353.0,True
+ETH,mean_ade,0.326,0.32616174510527135,0.326,True
+ETH,mean_fde,0.653,0.6532154209745195,0.653,True
+ETH,threshold,0.41,0.4086752689354286,0.41,True
+ETH,failure_rate,0.249,0.24929178470254956,0.249,True
+ETH,tree_accuracy,0.793,0.7932011331444759,0.793,True
+ETH,importance_init_orientation,0.4,0.39970165927952567,0.4,True
+ETH,importance_init_y,0.523,0.5233282535850394,0.523,True
+Hotel,trajectories,366.0,366.0,366.0,True
+Hotel,mean_ade,0.238,0.23823642355994581,0.238,True
+Hotel,mean_fde,0.48,0.48022775997775236,0.48,True
+Hotel,threshold,0.33,0.33314799291948005,0.33,True
+Hotel,failure_rate,0.251,0.25136612021857924,0.251,True
+Hotel,tree_accuracy,0.82,0.819672131147541,0.82,True
+Hotel,importance_init_orientation,0.432,0.4319156868648412,0.432,True
+Hotel,importance_init_speed,0.218,0.21775001157101007,0.218,True

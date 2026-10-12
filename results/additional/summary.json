@@ -1,0 +1,593 @@
+{
+  "note": "Additional analysis, not in the preprint.",
+  "config": {
+    "min_track_len": 4,
+    "obs_fraction": 0.5,
+    "max_pred_steps": 8,
+    "min_gt_steps": 2,
+    "dt": 0.4,
+    "damping": 0.98,
+    "min_speed": 0.01,
+    "speed_substitute": 0.5,
+    "failure_percentile": 75.0,
+    "features": [
+      "init_speed",
+      "init_orientation",
+      "init_x",
+      "init_y"
+    ],
+    "max_depth": 4,
+    "min_samples_leaf": 10,
+    "random_state": 42
+  },
+  "A1_heldout": {
+    "ETH": {
+      "n": 353,
+      "failure_rate": 0.24929178470254956,
+      "train_accuracy": 0.7932011331444759,
+      "cv_accuracy_mean": 0.7174084507042253,
+      "cv_accuracy_std": 0.0443951322079988,
+      "cv_balanced_accuracy_mean": 0.5526664816870145,
+      "cv_balanced_accuracy_std": 0.05555234608555798,
+      "majority_baseline": 0.7507082152974505,
+      "n_splits": 5,
+      "n_repeats": 20,
+      "importances": {
+        "init_speed": 0.077,
+        "init_orientation": 0.3997,
+        "init_x": 0.0,
+        "init_y": 0.5233
+      }
+    },
+    "Hotel": {
+      "n": 366,
+      "failure_rate": 0.25136612021857924,
+      "train_accuracy": 0.819672131147541,
+      "cv_accuracy_mean": 0.7433228433913365,
+      "cv_accuracy_std": 0.042140344803297716,
+      "cv_balanced_accuracy_mean": 0.6120563530037214,
+      "cv_balanced_accuracy_std": 0.05507718706222712,
+      "majority_baseline": 0.7486338797814207,
+      "n_splits": 5,
+      "n_repeats": 20,
+      "importances": {
+        "init_speed": 0.2178,
+        "init_orientation": 0.4319,
+        "init_x": 0.1761,
+        "init_y": 0.1742
+      }
+    }
+  },
+  "A2_bootstrap": {
+    "ETH": [
+      {
+        "feature": "init_speed",
+        "median": 0.1665,
+        "p05": 0.0,
+        "p95": 0.4421,
+        "top1_share": 0.108
+      },
+      {
+        "feature": "init_orientation",
+        "median": 0.3447,
+        "p05": 0.0742,
+        "p95": 0.6283,
+        "top1_share": 0.388
+      },
+      {
+        "feature": "init_x",
+        "median": 0.0668,
+        "p05": 0.0,
+        "p95": 0.3193,
+        "top1_share": 0.036
+      },
+      {
+        "feature": "init_y",
+        "median": 0.3701,
+        "p05": 0.1124,
+        "p95": 0.6204,
+        "top1_share": 0.468
+      }
+    ],
+    "Hotel": [
+      {
+        "feature": "init_speed",
+        "median": 0.2533,
+        "p05": 0.0548,
+        "p95": 0.433,
+        "top1_share": 0.08
+      },
+      {
+        "feature": "init_orientation",
+        "median": 0.4885,
+        "p05": 0.3423,
+        "p95": 0.6442,
+        "top1_share": 0.896
+      },
+      {
+        "feature": "init_x",
+        "median": 0.1191,
+        "p05": 0.0,
+        "p95": 0.2787,
+        "top1_share": 0.008
+      },
+      {
+        "feature": "init_y",
+        "median": 0.1145,
+        "p05": 0.0,
+        "p95": 0.3465,
+        "top1_share": 0.016
+      }
+    ]
+  },
+  "A3_horizon": {
+    "ETH": {
+      "by_horizon": [
+        {
+          "horizon": 2,
+          "trajectories": 3,
+          "mean_ade": 0.1028,
+          "failure_rate": 0.0
+        },
+        {
+          "horizon": 3,
+          "trajectories": 4,
+          "mean_ade": 0.1632,
+          "failure_rate": 0.0
+        },
+        {
+          "horizon": 4,
+          "trajectories": 3,
+          "mean_ade": 0.1893,
+          "failure_rate": 0.0
+        },
+        {
+          "horizon": 5,
+          "trajectories": 9,
+          "mean_ade": 0.1864,
+          "failure_rate": 0.1111
+        },
+        {
+          "horizon": 6,
+          "trajectories": 6,
+          "mean_ade": 0.2225,
+          "failure_rate": 0.0
+        },
+        {
+          "horizon": 7,
+          "trajectories": 14,
+          "mean_ade": 0.4598,
+          "failure_rate": 0.4286
+        },
+        {
+          "horizon": 8,
+          "trajectories": 314,
+          "mean_ade": 0.3317,
+          "failure_rate": 0.258
+        }
+      ],
+      "full_horizon_share": 0.8895184135977338,
+      "full_horizon_only": {
+        "threshold": 0.4125930137198367,
+        "n": 314,
+        "failure_rate": 0.2515923566878981,
+        "train_accuracy": 0.7929936305732485,
+        "cv_accuracy_mean": 0.712936507936508,
+        "cv_accuracy_std": 0.04180309126593496,
+        "cv_balanced_accuracy_mean": 0.541980939716312,
+        "cv_balanced_accuracy_std": 0.05265913944788615,
+        "majority_baseline": 0.7484076433121019,
+        "n_splits": 5,
+        "n_repeats": 20,
+        "importances": {
+          "init_speed": 0.1208,
+          "init_orientation": 0.4451,
+          "init_x": 0.0363,
+          "init_y": 0.3978
+        }
+      }
+    },
+    "Hotel": {
+      "by_horizon": [
+        {
+          "horizon": 2,
+          "trajectories": 15,
+          "mean_ade": 0.0756,
+          "failure_rate": 0.0
+        },
+        {
+          "horizon": 3,
+          "trajectories": 20,
+          "mean_ade": 0.091,
+          "failure_rate": 0.05
+        },
+        {
+          "horizon": 4,
+          "trajectories": 31,
+          "mean_ade": 0.1325,
+          "failure_rate": 0.0
+        },
+        {
+          "horizon": 5,
+          "trajectories": 29,
+          "mean_ade": 0.1796,
+          "failure_rate": 0.069
+        },
+        {
+          "horizon": 6,
+          "trajectories": 23,
+          "mean_ade": 0.1853,
+          "failure_rate": 0.087
+        },
+        {
+          "horizon": 7,
+          "trajectories": 46,
+          "mean_ade": 0.2491,
+          "failure_rate": 0.2174
+        },
+        {
+          "horizon": 8,
+          "trajectories": 202,
+          "mean_ade": 0.2931,
+          "failure_rate": 0.3812
+        }
+      ],
+      "full_horizon_share": 0.5519125683060109,
+      "full_horizon_only": {
+        "threshold": 0.4023567793081565,
+        "n": 202,
+        "failure_rate": 0.2524752475247525,
+        "train_accuracy": 0.7673267326732673,
+        "cv_accuracy_mean": 0.6710792682926829,
+        "cv_accuracy_std": 0.05347955564327828,
+        "cv_balanced_accuracy_mean": 0.5041133919843598,
+        "cv_balanced_accuracy_std": 0.05938093620469982,
+        "majority_baseline": 0.7475247524752475,
+        "n_splits": 5,
+        "n_repeats": 20,
+        "importances": {
+          "init_speed": 0.3081,
+          "init_orientation": 0.6919,
+          "init_x": 0.0,
+          "init_y": 0.0
+        }
+      }
+    }
+  },
+  "A4_no_speed_substitution": {
+    "ETH": {
+      "substituted_in_preprint": 12,
+      "n": 353,
+      "failure_rate": 0.24929178470254956,
+      "train_accuracy": 0.7932011331444759,
+      "cv_accuracy_mean": 0.7174084507042253,
+      "cv_accuracy_std": 0.0443951322079988,
+      "cv_balanced_accuracy_mean": 0.5526664816870145,
+      "cv_balanced_accuracy_std": 0.05555234608555798,
+      "majority_baseline": 0.7507082152974505,
+      "n_splits": 5,
+      "n_repeats": 20,
+      "importances": {
+        "init_speed": 0.077,
+        "init_orientation": 0.3997,
+        "init_x": 0.0,
+        "init_y": 0.5233
+      }
+    },
+    "Hotel": {
+      "substituted_in_preprint": 43,
+      "n": 366,
+      "failure_rate": 0.25136612021857924,
+      "train_accuracy": 0.819672131147541,
+      "cv_accuracy_mean": 0.7434598296927062,
+      "cv_accuracy_std": 0.041432260388365255,
+      "cv_balanced_accuracy_mean": 0.6123408647882331,
+      "cv_balanced_accuracy_std": 0.05456177072224203,
+      "majority_baseline": 0.7486338797814207,
+      "n_splits": 5,
+      "n_repeats": 20,
+      "importances": {
+        "init_speed": 0.2323,
+        "init_orientation": 0.4671,
+        "init_x": 0.1778,
+        "init_y": 0.1229
+      }
+    }
+  },
+  "A5_threshold": [
+    {
+      "scene": "ETH",
+      "percentile": 60,
+      "threshold": 0.32741609720329007,
+      "n": 353,
+      "failure_rate": 0.39943342776203966,
+      "train_accuracy": 0.7223796033994334,
+      "cv_accuracy_mean": 0.6186277665995976,
+      "cv_accuracy_std": 0.0459560178928276,
+      "cv_balanced_accuracy_mean": 0.5766711536258449,
+      "cv_balanced_accuracy_std": 0.04718183471647875,
+      "majority_baseline": 0.6005665722379603,
+      "n_splits": 5,
+      "n_repeats": 10,
+      "importances": {
+        "init_speed": 0.0372,
+        "init_orientation": 0.4224,
+        "init_x": 0.0255,
+        "init_y": 0.5149
+      }
+    },
+    {
+      "scene": "Hotel",
+      "percentile": 60,
+      "threshold": 0.26225602539240633,
+      "n": 366,
+      "failure_rate": 0.3989071038251366,
+      "train_accuracy": 0.7622950819672131,
+      "cv_accuracy_mean": 0.6587041836356904,
+      "cv_accuracy_std": 0.05284413255008054,
+      "cv_balanced_accuracy_mean": 0.6365726227795193,
+      "cv_balanced_accuracy_std": 0.06261898535766254,
+      "majority_baseline": 0.6010928961748634,
+      "n_splits": 5,
+      "n_repeats": 10,
+      "importances": {
+        "init_speed": 0.2357,
+        "init_orientation": 0.5857,
+        "init_x": 0.0831,
+        "init_y": 0.0954
+      }
+    },
+    {
+      "scene": "ETH",
+      "percentile": 65,
+      "threshold": 0.34732664788747075,
+      "n": 353,
+      "failure_rate": 0.35127478753541075,
+      "train_accuracy": 0.7535410764872521,
+      "cv_accuracy_mean": 0.664185110663984,
+      "cv_accuracy_std": 0.05381778873057087,
+      "cv_balanced_accuracy_mean": 0.5959572463768116,
+      "cv_balanced_accuracy_std": 0.054593325057267036,
+      "majority_baseline": 0.6487252124645893,
+      "n_splits": 5,
+      "n_repeats": 10,
+      "importances": {
+        "init_speed": 0.1581,
+        "init_orientation": 0.3551,
+        "init_x": 0.0352,
+        "init_y": 0.4516
+      }
+    },
+    {
+      "scene": "Hotel",
+      "percentile": 65,
+      "threshold": 0.2849746612266567,
+      "n": 366,
+      "failure_rate": 0.34972677595628415,
+      "train_accuracy": 0.7513661202185792,
+      "cv_accuracy_mean": 0.6653165494261386,
+      "cv_accuracy_std": 0.04932323907529885,
+      "cv_balanced_accuracy_mean": 0.6038675804691762,
+      "cv_balanced_accuracy_std": 0.05554884586578015,
+      "majority_baseline": 0.6502732240437159,
+      "n_splits": 5,
+      "n_repeats": 10,
+      "importances": {
+        "init_speed": 0.1905,
+        "init_orientation": 0.5586,
+        "init_x": 0.1618,
+        "init_y": 0.0892
+      }
+    },
+    {
+      "scene": "ETH",
+      "percentile": 70,
+      "threshold": 0.38003459765064224,
+      "n": 353,
+      "failure_rate": 0.3002832861189802,
+      "train_accuracy": 0.7648725212464589,
+      "cv_accuracy_mean": 0.6872515090543261,
+      "cv_accuracy_std": 0.04281547856215925,
+      "cv_balanced_accuracy_mean": 0.5675283858998145,
+      "cv_balanced_accuracy_std": 0.049750351370341825,
+      "majority_baseline": 0.6997167138810199,
+      "n_splits": 5,
+      "n_repeats": 10,
+      "importances": {
+        "init_speed": 0.0525,
+        "init_orientation": 0.4857,
+        "init_x": 0.0,
+        "init_y": 0.4618
+      }
+    },
+    {
+      "scene": "Hotel",
+      "percentile": 70,
+      "threshold": 0.3048720309631231,
+      "n": 366,
+      "failure_rate": 0.3005464480874317,
+      "train_accuracy": 0.7841530054644809,
+      "cv_accuracy_mean": 0.7142391706775268,
+      "cv_accuracy_std": 0.05229349585011286,
+      "cv_balanced_accuracy_mean": 0.6231022898669957,
+      "cv_balanced_accuracy_std": 0.0579634039041194,
+      "majority_baseline": 0.6994535519125683,
+      "n_splits": 5,
+      "n_repeats": 10,
+      "importances": {
+        "init_speed": 0.218,
+        "init_orientation": 0.5913,
+        "init_x": 0.1698,
+        "init_y": 0.021
+      }
+    },
+    {
+      "scene": "ETH",
+      "percentile": 75,
+      "threshold": 0.4086752689354286,
+      "n": 353,
+      "failure_rate": 0.24929178470254956,
+      "train_accuracy": 0.7932011331444759,
+      "cv_accuracy_mean": 0.7181006036217304,
+      "cv_accuracy_std": 0.042298585913838685,
+      "cv_balanced_accuracy_mean": 0.5608225428536194,
+      "cv_balanced_accuracy_std": 0.04757041449232228,
+      "majority_baseline": 0.7507082152974505,
+      "n_splits": 5,
+      "n_repeats": 10,
+      "importances": {
+        "init_speed": 0.077,
+        "init_orientation": 0.3997,
+        "init_x": 0.0,
+        "init_y": 0.5233
+      }
+    },
+    {
+      "scene": "Hotel",
+      "percentile": 75,
+      "threshold": 0.33314799291948005,
+      "n": 366,
+      "failure_rate": 0.25136612021857924,
+      "train_accuracy": 0.819672131147541,
+      "cv_accuracy_mean": 0.7437578674564976,
+      "cv_accuracy_std": 0.03997950461442731,
+      "cv_balanced_accuracy_mean": 0.6109904306220096,
+      "cv_balanced_accuracy_std": 0.051654106572916206,
+      "majority_baseline": 0.7486338797814207,
+      "n_splits": 5,
+      "n_repeats": 10,
+      "importances": {
+        "init_speed": 0.2178,
+        "init_orientation": 0.4319,
+        "init_x": 0.1761,
+        "init_y": 0.1742
+      }
+    },
+    {
+      "scene": "ETH",
+      "percentile": 80,
+      "threshold": 0.4451490009672922,
+      "n": 353,
+      "failure_rate": 0.20113314447592068,
+      "train_accuracy": 0.8215297450424929,
+      "cv_accuracy_mean": 0.7577585513078472,
+      "cv_accuracy_std": 0.02972242798776262,
+      "cv_balanced_accuracy_mean": 0.5211152882205513,
+      "cv_balanced_accuracy_std": 0.030669270831576997,
+      "majority_baseline": 0.7988668555240793,
+      "n_splits": 5,
+      "n_repeats": 10,
+      "importances": {
+        "init_speed": 0.1116,
+        "init_orientation": 0.4047,
+        "init_x": 0.0,
+        "init_y": 0.4837
+      }
+    },
+    {
+      "scene": "Hotel",
+      "percentile": 80,
+      "threshold": 0.37279393320293985,
+      "n": 366,
+      "failure_rate": 0.1994535519125683,
+      "train_accuracy": 0.8278688524590164,
+      "cv_accuracy_mean": 0.7677711958533877,
+      "cv_accuracy_std": 0.0346130318062784,
+      "cv_balanced_accuracy_mean": 0.5380735854832874,
+      "cv_balanced_accuracy_std": 0.050144871746723066,
+      "majority_baseline": 0.8005464480874317,
+      "n_splits": 5,
+      "n_repeats": 10,
+      "importances": {
+        "init_speed": 0.2508,
+        "init_orientation": 0.4305,
+        "init_x": 0.2691,
+        "init_y": 0.0497
+      }
+    },
+    {
+      "scene": "ETH",
+      "percentile": 85,
+      "threshold": 0.5063353299626415,
+      "n": 353,
+      "failure_rate": 0.1501416430594901,
+      "train_accuracy": 0.8555240793201133,
+      "cv_accuracy_mean": 0.8190020120724345,
+      "cv_accuracy_std": 0.028747668530283835,
+      "cv_balanced_accuracy_mean": 0.5075151515151515,
+      "cv_balanced_accuracy_std": 0.032298979221788315,
+      "majority_baseline": 0.8498583569405099,
+      "n_splits": 5,
+      "n_repeats": 10,
+      "importances": {
+        "init_speed": 0.3205,
+        "init_orientation": 0.3808,
+        "init_x": 0.0,
+        "init_y": 0.2987
+      }
+    },
+    {
+      "scene": "Hotel",
+      "percentile": 85,
+      "threshold": 0.4156735383419785,
+      "n": 366,
+      "failure_rate": 0.15027322404371585,
+      "train_accuracy": 0.8633879781420765,
+      "cv_accuracy_mean": 0.810918178452425,
+      "cv_accuracy_std": 0.03151583391252447,
+      "cv_balanced_accuracy_mean": 0.5100870455709166,
+      "cv_balanced_accuracy_std": 0.03998594787788532,
+      "majority_baseline": 0.8497267759562841,
+      "n_splits": 5,
+      "n_repeats": 10,
+      "importances": {
+        "init_speed": 0.2087,
+        "init_orientation": 0.6093,
+        "init_x": 0.0512,
+        "init_y": 0.1308
+      }
+    },
+    {
+      "scene": "ETH",
+      "percentile": 90,
+      "threshold": 0.5569180888307913,
+      "n": 353,
+      "failure_rate": 0.10198300283286119,
+      "train_accuracy": 0.8980169971671388,
+      "cv_accuracy_mean": 0.8954808853118712,
+      "cv_accuracy_std": 0.013686128532436226,
+      "cv_balanced_accuracy_mean": 0.4985863095238095,
+      "cv_balanced_accuracy_std": 0.007299634252361826,
+      "majority_baseline": 0.8980169971671388,
+      "n_splits": 5,
+      "n_repeats": 10,
+      "importances": {
+        "init_speed": 0.3697,
+        "init_orientation": 0.121,
+        "init_x": 0.3294,
+        "init_y": 0.1799
+      }
+    },
+    {
+      "scene": "Hotel",
+      "percentile": 90,
+      "threshold": 0.4653215569396261,
+      "n": 366,
+      "failure_rate": 0.10109289617486339,
+      "train_accuracy": 0.907103825136612,
+      "cv_accuracy_mean": 0.8869085523880045,
+      "cv_accuracy_std": 0.01711738653731637,
+      "cv_balanced_accuracy_mean": 0.5126854811854812,
+      "cv_balanced_accuracy_std": 0.037075475216713775,
+      "majority_baseline": 0.8989071038251366,
+      "n_splits": 5,
+      "n_repeats": 10,
+      "importances": {
+        "init_speed": 0.3406,
+        "init_orientation": 0.542,
+        "init_x": 0.0183,
+        "init_y": 0.099
+      }
+    }
+  ]
+}

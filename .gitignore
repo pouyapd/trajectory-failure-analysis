@@ -1,0 +1,12 @@
+# raw dataset (downloaded by scripts/download_data.py; not redistributed here)
+data/
+OpenTraj/
+
+# Python / notebooks
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# scratch outputs
+outputs/

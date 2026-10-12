@@ -1,0 +1,5 @@
+IF init_orientation > 2.98 and init_y > 6.18 THEN failure (18 trajectories, 56% failures)
+IF init_speed > 1.72 and init_y <= 3.64 THEN failure (16 trajectories, 69% failures)
+IF init_speed <= 1.72 and init_orientation <= -2.59 and init_y <= 3.64 THEN failure (14 trajectories, 57% failures)
+IF init_speed <= 1.72 and init_orientation > 0.28 and init_y <= 3.64 THEN failure (11 trajectories, 64% failures)
+IF init_orientation > 0.24 and 3.64 < init_y <= 4.23 THEN failure (10 trajectories, 60% failures)
