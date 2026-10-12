@@ -3,7 +3,7 @@ plots.py — figures in one visual language (colour-blind-checked palette,
 recessive grid, explicit units). Functions return matplotlib Figures.
 """
 
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt

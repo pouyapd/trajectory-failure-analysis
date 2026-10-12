@@ -10,7 +10,7 @@ analysis.py — interpretable failure analysis on the per-pedestrian results.
 * `leaf_rules`: readable IF-THEN rules for the leaves that predict failure.
 """
 
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Sequence
 
 import numpy as np
 import pandas as pd
